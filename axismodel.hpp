@@ -2,6 +2,7 @@
 #define AXISMODEL_HPP
 
 #include <QAbstractTableModel>
+#include <QList>
 
 class AxisModel : QAbstractTableModel
 {
@@ -17,13 +18,19 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const;
     bool setData(const QModelIndex &index, const QVariant &value, int role);
-    //bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role);
+    bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role);
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
     bool insertRows(int row, int count, const QModelIndex &parent);
     bool removeRows(int row, int count, const QModelIndex &parent);
 
     //drag & drop will be implenment in further version
+
+protected:
+    QList<double> m_xLegends;
+    QList<QString> m_yLegends;
+
+    QList< QList<double> > m_yValues;
 };
 
 #endif // AXISMODEL_HPP

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui charts
+QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,11 +14,20 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         widget.cpp \
-    qchartpresent.cpp \
     axismodel.cpp
 
 HEADERS  += widget.hpp \
-    qchartpresent.hpp \
     axismodel.hpp
 
 FORMS    += widget.ui
+
+greaterThan(QT_MAJOR_VERSION, 4) {
+greaterThan(QT_MINOR_VERSION, 6) {
+    QT += charts
+    SOURCES += qchartpresent.cpp
+    HEADERS += qchartpresent.hpp
+}
+}
+
+DISTFILES += \
+    work

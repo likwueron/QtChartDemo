@@ -1,6 +1,8 @@
 #include "widget.hpp"
 #include "ui_widget.h"
+#if QT_VERSION >= 0x050700
 #include "qchartpresent.hpp"
+#endif
 #include "axismodel.hpp"
 
 Widget::Widget(QWidget *parent) :

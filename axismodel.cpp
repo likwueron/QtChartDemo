@@ -13,7 +13,8 @@ QModelIndex AxisModel::index(int row, int column, const QModelIndex &parent) con
 
 QModelIndex AxisModel::parent(const QModelIndex &child) const
 {
-    return QAbstractTableModel::parent(child);
+    Q_UNUSED(child)
+    return QModelIndex();
 }
 
 int AxisModel::rowCount(const QModelIndex &parent) const
@@ -44,6 +45,11 @@ QVariant AxisModel::headerData(int section, Qt::Orientation orientation, int rol
 }
 
 bool AxisModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+
+}
+
+bool AxisModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
 {
 
 }
