@@ -20,6 +20,9 @@ public:
 protected:
     AxisModel *mp_model;
 
+private slots:
+    void on_axisChartTableView_clicked(const QModelIndex &index);
+
 private:
     Ui::Widget *ui;
 };

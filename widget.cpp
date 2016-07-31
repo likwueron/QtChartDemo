@@ -17,4 +17,10 @@ Widget::Widget(QWidget *parent) :
 Widget::~Widget()
 {
     delete ui;
+    delete mp_model;
+}
+
+void Widget::on_axisChartTableView_clicked(const QModelIndex &index)
+{
+
 }

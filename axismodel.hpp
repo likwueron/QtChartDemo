@@ -4,11 +4,11 @@
 #include <QAbstractTableModel>
 #include <QList>
 
-class AxisModel : QAbstractTableModel
+class AxisModel : public QAbstractTableModel
 {
 public:
     AxisModel(QObject *parent = 0x0);
-
+    virtual ~AxisModel();
 
     QModelIndex index(int row, int column, const QModelIndex &parent) const;
     QModelIndex parent(const QModelIndex &child) const;
@@ -23,14 +23,34 @@ public:
 
     bool insertRows(int row, int count, const QModelIndex &parent);
     bool removeRows(int row, int count, const QModelIndex &parent);
-
+    bool insertColumns(int column, int count, const QModelIndex &parent);
+    bool removeColumns(int column, int count, const QModelIndex &parent);
     //drag & drop will be implenment in further version
 
+public slots:
+    void when_seriesAdded(const QString& legendName, int row);
+    void when_seriesRemoved(int row);
+    void when_seriesExtended(int column);
+    void when_seriesShrink(int column);
+
 protected:
+    inline int rowNum() const;
+    inline int colNum() const;
+
     QList<double> m_xLegends;
     QList<QString> m_yLegends;
 
     QList< QList<double> > m_yValues;
 };
+
+int AxisModel::rowNum() const
+{
+    return m_yLegends.count();
+}
+
+int AxisModel::colNum() const
+{
+    return m_xLegends.count();
+}
 
 #endif // AXISMODEL_HPP
